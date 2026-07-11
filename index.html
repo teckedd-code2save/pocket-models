@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare open and open-weight models for Android, then assemble an on-device or hybrid AI stack.">
+  <meta name="theme-color" content="#f4f1e8">
+  <title>Pocket Models — Android AI stack explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Pocket Models home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>Pocket Models</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#builder">Stack builder</a>
+      <a href="#compare">Compare</a>
+      <a href="#patterns">Patterns</a>
+    </nav>
+    <span class="freshness">Reviewed · Jul 2026</span>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">A field guide for Android engineers</p>
+        <h1>Put the right model<br><span>in the right place.</span></h1>
+        <p class="hero-lede">Compare capable small models, understand the real device tradeoffs, and leave with a stack you can prototype—not just a leaderboard winner.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#builder">Build my stack <span aria-hidden="true">↘</span></a>
+          <a class="text-link" href="#compare">See the shortlist <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="micro-note"><strong>Open-source ≠ one license.</strong> This guide separates permissive models from open-weight models with custom terms.</p>
+      </div>
+      <div class="hero-visual" aria-label="Illustration of a small AI model running inside an Android phone">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="signal signal-one">local</div>
+        <div class="signal signal-two">private</div>
+        <div class="signal signal-three">fast</div>
+        <div class="phone-shell">
+          <div class="phone-speaker"></div>
+          <div class="phone-screen">
+            <span class="screen-label">ON DEVICE</span>
+            <div class="model-core">
+              <span>2B</span>
+              <small>effective</small>
+            </div>
+            <div class="token-line"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="screen-stat"><span>network</span><strong>optional</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="builder-section" id="builder">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 · Stack builder</p>
+          <h2>Make the constraints choose.</h2>
+        </div>
+        <p>There is no universal “best” model. Choose the product constraints that matter, and the recommendation updates instantly.</p>
+      </div>
+
+      <div class="builder-grid">
+        <form class="controls" id="stack-form">
+          <fieldset>
+            <legend>Where should intelligence run?</legend>
+            <div class="segmented" data-control="deployment">
+              <label><input type="radio" name="deployment" value="device" checked><span>On device</span></label>
+              <label><input type="radio" name="deployment" value="hybrid"><span>Hybrid</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="legend-row">
+              <legend>Target phone memory</legend>
+              <output id="memory-output" for="memory">8 GB</output>
+            </div>
+            <input class="range" id="memory" name="memory" type="range" min="0" max="3" step="1" value="2" aria-valuetext="8 gigabytes">
+            <div class="range-labels" aria-hidden="true"><span>4 GB</span><span>6 GB</span><span>8 GB</span><span>12+ GB</span></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Core capability</legend>
+            <div class="choice-grid">
+              <label><input type="radio" name="capability" value="text" checked><span><b>Aa</b> Text</span></label>
+              <label><input type="radio" name="capability" value="vision"><span><b>◉</b> Vision</span></label>
+              <label><input type="radio" name="capability" value="audio"><span><b>≈</b> Audio</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Optimize first for</legend>
+            <select id="priority" name="priority">
+              <option value="quality">Best useful quality</option>
+              <option value="speed">Low latency</option>
+              <option value="privacy">Privacy & offline</option>
+              <option value="tools">Tool calling</option>
+              <option value="license">Permissive licensing</option>
+            </select>
+          </fieldset>
+        </form>
+
+        <article class="recommendation" aria-live="polite" aria-atomic="true">
+          <div class="rec-topline">
+            <span class="rec-kicker">Recommended build</span>
+            <span class="fit-badge" id="fit-badge"><i></i> Strong fit</span>
+          </div>
+          <h3 id="rec-title">Private multimodal assistant</h3>
+          <p id="rec-summary">Keep prompts and media on the phone, with enough headroom for a mobile-first multimodal model.</p>
+
+          <div class="stack-flow" id="stack-flow" aria-label="Recommended stack">
+            <div><small>APP</small><strong>Kotlin + Compose</strong></div><span aria-hidden="true">→</span>
+            <div><small>RUNTIME</small><strong>LiteRT-LM</strong></div><span aria-hidden="true">→</span>
+            <div class="accent-node"><small>MODEL</small><strong>Gemma 4 E2B</strong></div>
+          </div>
+
+          <div class="rec-details">
+            <div><span>Why it fits</span><p id="rec-why">Native Android path, multimodal inputs, and strong quality for a phone-class model.</p></div>
+            <div><span>Watch for</span><p id="rec-caution">“E2B” is effective compute—not download size. Test thermal behavior and peak memory on real target devices.</p></div>
+          </div>
+
+          <div class="rec-footer">
+            <button class="button button-light" type="button" id="copy-stack">Copy stack</button>
+            <span id="copy-status" role="status"></span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="compare-section" id="compare">
+      <div class="section-heading compact">
+        <div>
+          <p class="eyebrow">02 · The shortlist</p>
+          <h2>Six models worth testing.</h2>
+        </div>
+        <div class="filter-row" aria-label="Filter models">
+          <button class="filter active" type="button" data-filter="all">All</button>
+          <button class="filter" type="button" data-filter="tiny">Tiny</button>
+          <button class="filter" type="button" data-filter="multimodal">Multimodal</button>
+          <button class="filter" type="button" data-filter="permissive">Permissive</button>
+        </div>
+      </div>
+      <div class="model-list" id="model-list"></div>
+    </section>
+
+    <section class="patterns-section" id="patterns">
+      <div class="section-heading compact">
+        <div>
+          <p class="eyebrow">03 · Architecture patterns</p>
+          <h2>Local when you can.<br>Hybrid when it counts.</h2>
+        </div>
+        <div class="segmented mode-switch" role="group" aria-label="Architecture pattern">
+          <button class="active" type="button" data-mode="device">On-device</button>
+          <button type="button" data-mode="hybrid">Hybrid</button>
+        </div>
+      </div>
+
+      <div class="architecture-card">
+        <div class="arch-copy">
+          <span class="arch-number" id="arch-number">01 / PRIVATE PATH</span>
+          <h3 id="arch-title">Everything sensitive stays in the APK boundary.</h3>
+          <p id="arch-description">Best for personal notes, lightweight copilots, offline search, and features that must work on unreliable networks.</p>
+          <ul id="arch-list">
+            <li>No per-token API bill</li>
+            <li>Predictable offline behavior</li>
+            <li>Device fragmentation becomes your problem</li>
+          </ul>
+        </div>
+        <div class="arch-diagram" id="arch-diagram" aria-label="On-device architecture diagram">
+          <div class="arch-node phone-node"><span>Android app</span><small>Compose · Room</small></div>
+          <span class="arch-arrow">→</span>
+          <div class="arch-node model-node"><span>Local model</span><small>LiteRT-LM / JNI</small></div>
+          <div class="privacy-loop">private loop</div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div><span class="footer-mark">PM</span><p>A practical starting point—not a substitute for profiling on your minimum supported device.</p></div>
+        <div class="source-links">
+          <span>Primary references</span>
+          <a href="https://ai.google.dev/edge/litert-lm" target="_blank" rel="noreferrer">LiteRT-LM ↗</a>
+          <a href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noreferrer">llama.cpp ↗</a>
+          <a href="https://docs.pytorch.org/executorch/stable/llm/run-on-android.html" target="_blank" rel="noreferrer">ExecuTorch ↗</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <dialog id="model-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close" type="button" aria-label="Close model details">×</button>
+    <div id="dialog-content"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
