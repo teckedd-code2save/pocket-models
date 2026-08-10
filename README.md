@@ -24,6 +24,19 @@ Then open `http://localhost:4173`.
 
 The page is fully client-side — no server, no API calls, no install beyond the HTTP server.
 
+## Testing
+
+The site has no build step, but the recommendation and filtering logic is guarded by smoke tests (Vitest + jsdom) that load the real `index.html` and `app.js` and drive the stack builder, filters, dialog, and architecture toggle:
+
+```bash
+npm ci
+npm run check   # node --check app.js (syntax)
+npm run lint    # ESLint
+npm test        # Vitest smoke tests
+```
+
+CI (`.github/workflows/ci.yml`) runs all three on every push and pull request to `main`.
+
 ## Interactive features
 
 - **Stack builder** — recommendations update from deployment mode (on-device / hybrid), device memory (4 GB to 12+ GB), core capability (text / vision / audio), and product priority (quality, latency, privacy, tool use, licensing).

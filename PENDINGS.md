@@ -74,6 +74,6 @@ This is a living document for Pocket Models. Add entries when you discover a sha
 
 Items explicitly tracked as future work, not sharp edges:
 
-1. CI workflow to automate the `main` → `gh-pages` merge — tracked in issue #5.
-2. Test setup and automated checks for the recommendation logic — tracked in issue #4 (AGENTS.md portion of that issue is already done).
+1. CI workflow to automate the `main` → `gh-pages` merge — issue #5 was closed as covered by #4's validation CI (2026-08-10); the deploy automation itself is now tracked in IDEAS.md idea #18.
+2. Test setup and automated checks for the recommendation logic — **done** in `bb342dc` (2026-08-10): CI workflow + Vitest smoke tests + ESLint.
 3. Content roadmap (new models, comparison features) — tracked in IDEAS.md.

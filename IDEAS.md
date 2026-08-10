@@ -49,8 +49,9 @@ Add a "commercial use" severity filter that flags models with any non-standard l
 
 ## Architecture & Quality
 
-### 14. Unit tests for stack builder logic
-The recommendation logic in `app.js` has no tests. A small test suite (Vitest or Node built-in test runner) would prevent regressions when adding new models.
+### 14. Unit tests for stack builder logic — ✅ done in `bb342dc` (2026-08-10)
+
+The recommendation logic in `app.js` now has a Vitest + jsdom smoke-test suite in `test/app.test.js` covering the stack builder matrix, model filters, detail dialog, architecture toggle, and copy action.
 
 ### 15. Accessibility audit
 Run axe-core or Lighthouse on the page and fix any ARIA, focus-trap, or colour-contrast issues found.
