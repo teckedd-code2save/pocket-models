@@ -1,0 +1,23 @@
+{
+  "name": "pocket-models",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interactive on-device AI stack builder for Android engineers — no backend, no build step, just HTML.",
+  "type": "module",
+  "scripts": {
+    "check": "node --check app.js",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^16.0.0",
+    "jsdom": "^30.0.0",
+    "vitest": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
