@@ -13,7 +13,7 @@
 | Logic | Client-side filtering and recommendation in `app.js` |
 | Tests | Vitest + jsdom smoke tests in `test/app.test.js` (dev-only, never shipped) |
 | CI | GitHub Actions — `.github/workflows/ci.yml` (syntax check, ESLint, tests) |
-| Deployment | GitHub Pages via `gh-pages` branch |
+| Deployment | GitHub Pages — auto-deploys the `main` branch on every push (no build step, no `gh-pages` branch) |
 
 ## 2. Project Structure
 
@@ -52,16 +52,15 @@ There is no runtime build step — the site works from static files. Dev-only to
 
 ## 5. Build & Deploy
 
-Deployed via GitHub Pages:
+Deployed via GitHub Pages **from the `main` branch directly** — no build step, no manual merge:
 
 ```bash
-# Deploy current main branch to gh-pages:
-git checkout gh-pages
-git merge main
-git push origin gh-pages
+git push origin main   # GitHub Pages builds and publishes automatically
 ```
 
-Published at: https://teckedd-code2save.github.io/pocket-models/
+- Every push to `main` triggers a `pages-build-deployment` run (Actions tab); the live site updates when it completes.
+- Published at: https://teckedd-code2save.github.io/pocket-models/
+- There is **no `gh-pages` branch** — the old manual `git checkout gh-pages && git merge main && git push origin gh-pages` flow is obsolete.
 
 ## 6. Code Conventions
 

@@ -64,8 +64,9 @@ Structure text strings so the tool can be translated to French, Spanish, Arabic,
 
 ## Distribution
 
-### 18. GitHub Pages deployment
-Set up a GitHub Actions workflow to deploy `index.html` + `styles.css` + `app.js` to GitHub Pages on push to main.
+### 18. GitHub Pages deployment — ✅ done (2026-08-12)
+
+Deployment is automatic with zero machinery: GitHub Pages is configured to build and publish the `main` branch on every push, so `index.html` + `styles.css` + `app.js` go live without a workflow file or manual merge. Verified: latest Pages build `a75563c` (tip of `main`), live site byte-identical to `main/index.html` (issue #8 closed as already satisfied).
 
 ### 19. Embeddable widget
 Create a lightweight `<script>` embed version that other Android development blogs or docs sites can embed as an iframe.

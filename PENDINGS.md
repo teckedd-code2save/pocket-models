@@ -4,13 +4,13 @@ This is a living document for Pocket Models. Add entries when you discover a sha
 
 ---
 
-## 1. `main` doesn't go live until it's merged into `gh-pages` [Severity: HIGH]
+## 1. ~~`main` doesn't go live until it's merged into `gh-pages`~~ [Severity: HIGH] — **fixed** (2026-08-12)
 
-**What:** Deployment is a manual branch merge: `git checkout gh-pages && git merge main && git push origin gh-pages`.
+**What:** Deployment was documented as a manual branch merge: `git checkout gh-pages && git merge main && git push origin gh-pages`.
 
-**Why it matters:** Commits to `main` are invisible on the published site (https://teckedd-code2save.github.io/pocket-models/) until the `gh-pages` merge happens. Forgetting the merge is the most common way a "deployed" change silently never ships.
+**Why it mattered:** If that were the real flow, commits to `main` would be invisible on the published site (https://teckedd-code2save.github.io/pocket-models/) until the merge happened.
 
-**Mitigation:** After pushing to `main`, immediately merge to `gh-pages` and confirm the published page updates.
+**Resolution:** No manual merge exists — GitHub Pages is configured to deploy the `main` branch directly (Settings → Pages → source: `main`, root path). Every push to `main` is built and published automatically by `pages-build-deployment`. Verified 2026-08-12: latest Pages build = `a75563c` (tip of `main`), and the live site is byte-identical to `main/index.html`. The `gh-pages` branch does not exist and is not used; AGENTS.md and IDEAS.md have been updated to match.
 
 ## 2. Zero-dependency rule is the product [Severity: HIGH]
 
@@ -74,6 +74,6 @@ This is a living document for Pocket Models. Add entries when you discover a sha
 
 Items explicitly tracked as future work, not sharp edges:
 
-1. CI workflow to automate the `main` → `gh-pages` merge — issue #5 was closed as covered by #4's validation CI (2026-08-10); the deploy automation itself is now tracked in IDEAS.md idea #18.
+1. ~~CI workflow to automate the `main` → `gh-pages` merge~~ — **done** (2026-08-12): no workflow needed — GitHub Pages deploys the `main` branch directly on every push, so the merge never existed in practice (issue #8 closed as already satisfied; verified against Pages build `a75563c`).
 2. Test setup and automated checks for the recommendation logic — **done** in `bb342dc` (2026-08-10): CI workflow + Vitest smoke tests + ESLint.
 3. Content roadmap (new models, comparison features) — tracked in IDEAS.md.
